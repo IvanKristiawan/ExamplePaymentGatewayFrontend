@@ -75,16 +75,19 @@ const TambahPaymentGateway = () => {
           onSuccess: async (result) => {
             /* You may add your own js here, this is just example */
             await axios.get(`${tempUrl}/order/status/${result.order_id}`);
+            navigate("/paymentGateway")
           },
           // Optional
           onPending: async (result) => {
             /* You may add your own js here, this is just example */
             await axios.get(`${tempUrl}/order/status/${result.order_id}`);
+            navigate("/paymentGateway")
           },
           // Optional
           onError: async (result) => {
             /* You may add your own js here, this is just example */
             await axios.get(`${tempUrl}/order/status/${result.order_id}`);
+            navigate("/paymentGateway")
           }
         });
       } catch (err) {
@@ -160,7 +163,7 @@ const TambahPaymentGateway = () => {
           <Button
             variant="outlined"
             color="secondary"
-            onClick={() => navigate("/paymentGatewat")}
+            onClick={() => navigate("/paymentGateway")}
             sx={{ marginRight: 2 }}
           >
             {"< Kembali"}

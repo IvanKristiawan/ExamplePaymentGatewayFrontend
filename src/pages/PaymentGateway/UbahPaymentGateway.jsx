@@ -12,7 +12,7 @@ import {
   Divider,
   Snackbar,
   Alert,
-  Paper
+  Paper,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -73,10 +73,10 @@ const UbahPaymentGateway = () => {
       const getSnapToken = await axios.post(`${tempUrl}/order/chargeSnap`, {
         transaction_details: {
           order_id: new_order_id,
-          gross_amount: parseInt(gross_amount)
+          gross_amount: parseInt(gross_amount),
         },
         ket,
-        nama
+        nama,
       });
 
       window.snap.pay(`${getSnapToken.data}`, {
@@ -84,17 +84,20 @@ const UbahPaymentGateway = () => {
         onSuccess: async (result) => {
           /* You may add your own js here, this is just example */
           await axios.get(`${tempUrl}/order/status/${result.order_id}`);
+          navigate("/paymentGateway");
         },
         // Optional
         onPending: async (result) => {
           /* You may add your own js here, this is just example */
           await axios.get(`${tempUrl}/order/status/${result.order_id}`);
+          navigate("/paymentGateway");
         },
         // Optional
         onError: async (result) => {
           /* You may add your own js here, this is just example */
           await axios.get(`${tempUrl}/order/status/${result.order_id}`);
-        }
+          navigate("/paymentGateway");
+        },
       });
     } catch (error) {
       alert(error);
@@ -122,7 +125,7 @@ const UbahPaymentGateway = () => {
               variant="outlined"
               value={order_id}
               InputProps={{
-                readOnly: true
+                readOnly: true,
               }}
               sx={{ backgroundColor: Colors.grey400 }}
             />
@@ -133,7 +136,7 @@ const UbahPaymentGateway = () => {
               variant="outlined"
               value={gross_amount}
               InputProps={{
-                readOnly: true
+                readOnly: true,
               }}
               sx={{ backgroundColor: Colors.grey400 }}
             />
@@ -146,7 +149,7 @@ const UbahPaymentGateway = () => {
               variant="outlined"
               value={ket}
               InputProps={{
-                readOnly: true
+                readOnly: true,
               }}
               sx={{ backgroundColor: Colors.grey400 }}
             />
@@ -157,7 +160,7 @@ const UbahPaymentGateway = () => {
               variant="outlined"
               value={nama}
               InputProps={{
-                readOnly: true
+                readOnly: true,
               }}
               sx={{ backgroundColor: Colors.grey400 }}
             />
@@ -196,15 +199,15 @@ const UbahPaymentGateway = () => {
 export default UbahPaymentGateway;
 
 const container = {
-  p: 4
+  p: 4,
 };
 
 const subTitleText = {
-  fontWeight: "900"
+  fontWeight: "900",
 };
 
 const dividerStyle = {
-  mt: 2
+  mt: 2,
 };
 
 const showDataContainer = {
@@ -212,8 +215,8 @@ const showDataContainer = {
   display: "flex",
   flexDirection: {
     xs: "column",
-    sm: "row"
-  }
+    sm: "row",
+  },
 };
 
 const showDataWrapper = {
@@ -221,36 +224,36 @@ const showDataWrapper = {
   flex: 1,
   flexDirection: "column",
   maxWidth: {
-    md: "40vw"
-  }
+    md: "40vw",
+  },
 };
 
 const spacingTop = {
-  mt: 4
+  mt: 4,
 };
 
 const alertBox = {
-  width: "100%"
+  width: "100%",
 };
 
 const labelInput = {
   fontWeight: "600",
-  marginLeft: 1
+  marginLeft: 1,
 };
 
 const contentContainer = {
   p: 3,
   pt: 1,
   mt: 2,
-  backgroundColor: Colors.grey100
+  backgroundColor: Colors.grey100,
 };
 
 const secondWrapper = {
   marginLeft: {
-    sm: 4
+    sm: 4,
   },
   marginTop: {
     sm: 0,
-    xs: 4
-  }
+    xs: 4,
+  },
 };
